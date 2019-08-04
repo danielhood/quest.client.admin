@@ -4,19 +4,24 @@
    Quest Admin Console
   </h1>
 </div>
-<ul>
-  <li>
-    <h2>Devices</h2>
-  </li>
-  <li>
-    <h2>Players</h2>
-  </li>
-  <li>
-    <h2>Quests</h2>
-  </li>
-  <li>
-    <h2>Users</h2>
-  </li>
-</ul>
-
-<router-outlet></router-outlet>
+<div>
+  <div class="menu-panel">
+    <ul>
+      <li>
+        <h2><a routerLink="/devices" routerLinkActive="active">Devices</a></h2>
+      </li>
+      <li>
+        <h2><a routerLink="/players" routerLinkActive="active">Players</a></h2>
+      </li>
+      <li>
+        <h2>Quests</h2>
+      </li>
+      <li>
+        <h2>Users</h2>
+      </li>
+    </ul>
+  </div>
+  <div class="content-panel">
+    <router-outlet></router-outlet>
+  </div>
+</div>
