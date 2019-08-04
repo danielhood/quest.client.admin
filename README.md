@@ -4,4 +4,6 @@ Web admin for quest
 # Setup Angular
 ```sudo apt-get install nodejs npm```
 
-```npm install -g @angular/cli```
+```sudo npm install -g npm@latest
+
+```sudo npm install -g @angular/cli```
