@@ -1,5 +1,8 @@
 export class DeviceModel {
-    id: number;
-    name: string;
+    hostname:     string;
+	  devicekey:    string;
+	  isregistered: boolean;
+	  isenabled:    boolean;
+	  devicetype:   string ;
   }
   

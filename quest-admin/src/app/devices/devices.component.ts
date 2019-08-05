@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DeviceModel } from "../models/device.model";
-import { DeviceService } from "../services/device.service"
+import { DeviceService } from "../services/device.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: 'devices',
@@ -11,13 +12,18 @@ import { DeviceService } from "../services/device.service"
 export class DeviceListComponent  implements OnInit {
   devices: DeviceModel[];
 
-  constructor(private deviceService: DeviceService) { }
+  constructor(
+    private deviceService: DeviceService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit() {
     this.getDevices();
   }
 
   getDevices(): void {
+    this.authService.getAuthToken('admin', 'admin').subscribe();
+    
     this.deviceService.getDevices()
         .subscribe(devices => this.devices = devices);
   }
