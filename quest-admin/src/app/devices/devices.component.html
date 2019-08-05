@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <h3>Device List</h3>
 <ul class="devices">
-    <li *ngFor="let device of devices">{{device.hostname}} - {{device.devicekey}} - {{device.isregistered}}</li>
+    <li *ngFor="let device of devices">{{device.hostname}} - {{device.devicekey}} - <span (click)="onRegisterClick(device)">{{device.isregistered}}</span></li>
 </ul>

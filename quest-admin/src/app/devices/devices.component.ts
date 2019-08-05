@@ -37,4 +37,11 @@ export class DeviceListComponent  implements OnInit {
     this.deviceService.getDevices()
       .subscribe(devices => this.devices = devices);
   }
+
+  onRegisterClick(device: DeviceModel): void {
+    console.log('click');
+    device.isregistered = !device.isregistered;
+    this.deviceService.updateDevice(device)
+      .subscribe();
+  }
 }
