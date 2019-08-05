@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { tap, map, catchError } from 'rxjs/operators';
 
 import {TokenModel} from '../models/token.model';
 

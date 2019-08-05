@@ -4,7 +4,6 @@ import { DeviceModel } from "../models/device.model";
 import { TokenModel } from "../models/token.model";
 import { DeviceService } from "../services/device.service";
 import { AuthService } from "../services/auth.service";
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'devices',
@@ -13,8 +12,6 @@ import { Observable } from 'rxjs';
 })
 export class DeviceListComponent  implements OnInit {
   devices: DeviceModel[];
-  //token: Observable<TokenModel>;
-  //token: TokenModel;
   token: string;
 
   constructor(

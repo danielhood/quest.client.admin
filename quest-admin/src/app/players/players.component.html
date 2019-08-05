@@ -1,5 +1,17 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h3>Player List</h3>
-<ul class="players">
-    <li *ngFor="let player of players">{{player.id}} - {{player.name}}</li>
-</ul>
+<table class="main-grid">
+    <tr>
+        <th class="main-grid-cell">Player Name</th>
+        <th class="main-grid-cell">Code</th>
+        <th class="main-grid-cell">Quest</th>
+        <th class="main-grid-cell">Quest Status</th>
+        <th class="main-grid-cell">Enabled</th>
+    </tr>
+    <tr *ngFor="let player of players" class="main-grid-row">
+        <td class="main-grid-cell"><input value={{player.name}} (keyup.enter)="onPlayerNameChanged(player, $event)" (blur)="onPlayerNameChanged(player, $event)" /></td>
+        <td class="main-grid-cell">{{player.code}}</td>
+        <td class="main-grid-cell"><input value={{player.questkey}} (keyup.enter)="onPlayerQuestKeyChanged(player, $event)" (blur)="onPlayerQuestKeyChanged(player, $event)" /></td>
+        <td class="main-grid-cell">{{player.queststatus}}</td>
+        <td class="main-grid-cell"><span (click)="onEnableClick(player)">{{player.isenabled}}</span></td>
+    </tr>
+</table>

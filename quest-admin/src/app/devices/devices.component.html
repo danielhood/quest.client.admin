@@ -1,5 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h3>Device List</h3>
-<ul class="devices">
-    <li *ngFor="let device of devices">{{device.hostname}}, Enabled: <span (click)="onEnableClick(device)">{{device.isenabled}}</span>, Registered: <span (click)="onRegisterClick(device)">{{device.isregistered}}</span>, <input value={{device.devicetype}} (keyup.enter)="onDeviceTypeChanged(device, $event)" (blur)="onDeviceTypeChanged(device, $event)"/></li>
-</ul>
+<table class="main-grid">
+    <tr>
+        <th class="main-grid-cell">Device Name</th>
+        <th class="main-grid-cell">Enabled</th>
+        <th class="main-grid-cell">Registered</th>
+        <th class="main-grid-cell">Device Type</th>
+    </tr>
+    <tr *ngFor="let device of devices" class="main-grid-row">
+        <td class="main-grid-cell">{{device.hostname}}</td>
+        <td class="main-grid-cell"><span (click)="onEnableClick(device)">{{device.isenabled}}</span></td>
+        <td class="main-grid-cell"><span (click)="onRegisterClick(device)">{{device.isregistered}}</span></td>
+        <td class="main-grid-cell"><input value={{device.devicetype}} (keyup.enter)="onDeviceTypeChanged(device, $event)" (blur)="onDeviceTypeChanged(device, $event)" /></td>
+    </tr>
+</table>

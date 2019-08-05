@@ -1,5 +1,9 @@
 export class PlayerModel {
-    id: number;
+    code: string;
     name: string;
+    questkey: string;
+    queststate: string;
+    achievements: string;
+    isenabled: boolean;
   }
   
