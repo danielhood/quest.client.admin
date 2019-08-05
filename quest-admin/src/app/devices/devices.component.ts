@@ -44,4 +44,18 @@ export class DeviceListComponent  implements OnInit {
     this.deviceService.updateDevice(device)
       .subscribe();
   }
+
+  onEnableClick(device: DeviceModel): void {
+    console.log('click');
+    device.isenabled = !device.isenabled;
+    this.deviceService.updateDevice(device)
+      .subscribe();
+  }
+
+  onDeviceTypeChanged(device: DeviceModel, event: any): void {
+    console.log('DeviceType changed:', event.target.value);
+    device.devicetype = event.target.value;
+    this.deviceService.updateDevice(device)
+      .subscribe();
+  }
 }

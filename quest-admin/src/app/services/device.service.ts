@@ -29,11 +29,6 @@ export class DeviceService {
           data => console.log(data)
         )
       );
-
-    // return of([
-    //     { hostname: 'host1', devicekey: 'star:red', isregistered: false, isenabled: false, devicetype: '' },
-    //     { hostname: 'host2', devicekey: 'star:blue', isregistered: false, isenabled: false, devicetype: '' }
-    // ]);
   }
 
   updateDevice(device: DeviceModel): Observable<DeviceModel> {
