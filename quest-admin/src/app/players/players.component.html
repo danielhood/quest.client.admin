@@ -6,6 +6,7 @@
         <th class="main-grid-cell">Quest</th>
         <th class="main-grid-cell">Quest Status</th>
         <th class="main-grid-cell">Enabled</th>
+        <th class="main-grid-cell">Delete</th>
     </tr>
     <tr *ngFor="let player of players" class="main-grid-row">
         <td class="main-grid-cell"><input value={{player.name}} (keyup.enter)="onPlayerNameChanged(player, $event)" (blur)="onPlayerNameChanged(player, $event)" /></td>
@@ -13,5 +14,7 @@
         <td class="main-grid-cell"><input value={{player.questkey}} (keyup.enter)="onPlayerQuestKeyChanged(player, $event)" (blur)="onPlayerQuestKeyChanged(player, $event)" /></td>
         <td class="main-grid-cell">{{player.queststatus}}</td>
         <td class="main-grid-cell"><span (click)="onEnableClick(player)">{{player.isenabled}}</span></td>
+        <td class="main-grid-cell"><span (click)="onDeletePlayer(player)">Delete</span></td>
     </tr>
 </table>
+<button (click)="onAddPlayer()">Add Player</button>

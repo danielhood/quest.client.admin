@@ -29,10 +29,18 @@ export class PlayerService {
       );
   }
 
-  updatePlayer(device: PlayerModel): Observable<PlayerModel> {
-    return this.http.put<PlayerModel>('https://quest.local:8443/player', device, this.buildPlayerRequestOptions())
+  updatePlayer(player: PlayerModel): Observable<PlayerModel> {
+    return this.http.put<PlayerModel>('https://quest.local:8443/player', player, this.buildPlayerRequestOptions())
       .pipe( tap (
         data => console.log('updatePlayer', data)
+      )
+    );
+  }
+
+  deletePlayer(player: PlayerModel): Observable<PlayerModel> {
+    return this.http.delete<PlayerModel>('https://quest.local:8443/player?code=' + player.code, this.buildPlayerRequestOptions())
+      .pipe( tap (
+        data => console.log('deletePlayer', data)
       )
     );
   }

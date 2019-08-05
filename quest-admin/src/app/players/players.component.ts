@@ -55,4 +55,26 @@ export class PlayerListComponent  implements OnInit {
     this.playerService.updatePlayer(player)
       .subscribe();
   }
+
+  onAddPlayer(): void {
+    console.log("Add Player");
+    let player = new PlayerModel;
+    player.name = "New Player";
+    player.code = "0000";
+
+    this.playerService.updatePlayer(player)
+      .subscribe(
+        players => this.players.push(player)  
+      );
+  }
+
+  onDeletePlayer(player: PlayerModel): void {
+    console.log("Delete Player:", player.name);
+    this.playerService.deletePlayer(player)
+      .subscribe(
+        // Refetch all players
+        data => this.playerService.getPlayers()
+        .subscribe(players => this.players = players)
+      );
+  }
 }
