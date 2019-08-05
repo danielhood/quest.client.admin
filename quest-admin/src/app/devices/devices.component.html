@@ -1,5 +1,6 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <h3>Device List</h3>
-<ul class="players">
+Token: <span>{{ (token | async)?.token }}</span>
+<ul class="devices">
     <li *ngFor="let device of devices">{{device.hostname}} - {{device.devicekey}} - {{device.isregistered}}</li>
 </ul>
