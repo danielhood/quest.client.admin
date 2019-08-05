@@ -13,8 +13,9 @@ import { Observable } from 'rxjs';
 })
 export class DeviceListComponent  implements OnInit {
   devices: DeviceModel[];
-  token: Observable<TokenModel>;
+  //token: Observable<TokenModel>;
   //token: TokenModel;
+  token: string;
 
   constructor(
     private deviceService: DeviceService,
@@ -26,15 +27,14 @@ export class DeviceListComponent  implements OnInit {
   }
 
   getDevices(): void {
-    this.token = this.authService.getAuthToken('admin', 'admin');
-      // .subscribe((data : TokenModel) => {
-      //   this.token = data;
-      //   console.log('token:', this.token.token)
-      // });
+    this.authService.getAuthToken('admin', 'admin')
+      .subscribe((data : TokenModel) => {
+        this.token = data.token;
+        console.log('token:', this.token);
+        localStorage.setItem('token', this.token);
+      });
       
-    // this.token = this.authService.getAuthToken('admin', 'admin');
-
-    // this.deviceService.getDevices()
-    //     .subscribe(devices => this.devices = devices);
+    this.deviceService.getDevices()
+      .subscribe(devices => this.devices = devices);
   }
 }
