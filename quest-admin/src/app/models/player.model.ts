@@ -1,5 +1,5 @@
 export class PlayerModel {
-    code: string;
+    code: number;
     name: string;
     questkey: string;
     queststate: string;

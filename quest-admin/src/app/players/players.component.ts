@@ -60,7 +60,7 @@ export class PlayerListComponent  implements OnInit {
     console.log("Add Player");
     let player = new PlayerModel;
     player.name = "New Player";
-    player.code = "0000";
+    player.code = 0;
 
     this.playerService.updatePlayer(player)
       .subscribe(

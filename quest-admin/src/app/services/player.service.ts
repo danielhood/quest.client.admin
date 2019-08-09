@@ -29,6 +29,14 @@ export class PlayerService {
       );
   }
 
+  getPlayer(playerCode: number): Observable<PlayerModel> {
+    return this.http.get<PlayerModel>('https://quest.local:8443/player?code='+playerCode, this.buildPlayerRequestOptions())
+        .pipe( tap (
+          data => console.log('getPlayers', data)
+        )
+      );
+  }
+
   updatePlayer(player: PlayerModel): Observable<PlayerModel> {
     return this.http.put<PlayerModel>('https://quest.local:8443/player', player, this.buildPlayerRequestOptions())
       .pipe( tap (

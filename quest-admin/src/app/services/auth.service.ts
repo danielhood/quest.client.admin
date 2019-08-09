@@ -19,6 +19,13 @@ export class AuthService {
     }
   }
 
+  buildDeviceTokenRequestBody(hostname: string): object {
+    return {
+      hostname: hostname,
+      devicekey: 'specialdevicekeya'
+    }
+  }
+
   buildTokenRequestOptions(): object {
     return {
       headers: new HttpHeaders({
@@ -46,19 +53,18 @@ export class AuthService {
   getAuthToken(user: string, pass: string): Observable<TokenModel> {
     console.log('Geting auth token...');
     return this.http.post<TokenModel>('https://quest.local:8443/token', 
-      this.buildTokenRequestBody('admin', 'admin'), 
+      this.buildTokenRequestBody(user, pass), 
       this.buildTokenRequestOptions());
-      //.pipe(catchError(this.handleError));
-
-      // .pipe( map (
-      //   res => {
-      //       this.storeToken(res.token);
-      //       console.log(localStorage.getItem('token'), res);
-      //       return res;
-      //   }
-      //   ));
   } 
     
+
+
+  getDeviceToken(hostname: string): Observable<TokenModel> {
+    console.log('Geting device token...');
+    return this.http.post<TokenModel>('https://quest.local:8443/token', 
+      this.buildDeviceTokenRequestBody(hostname), 
+      this.buildTokenRequestOptions());
+  } 
     storeToken(token: string) {
         localStorage.setItem('token', token);
     }
