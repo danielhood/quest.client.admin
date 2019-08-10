@@ -2,7 +2,7 @@ export class PlayerModel {
     code: number;
     name: string;
     questkey: string;
-    queststate: string;
+    queststatus: string;
     achievements: string;
     isenabled: boolean;
   }
