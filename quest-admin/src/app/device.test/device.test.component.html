@@ -1,0 +1,12 @@
+<table class="main-grid">
+    <tr>
+        <th class="main-grid-cell">Device Name</th>
+        <th class="main-grid-cell">Device Type</th>
+        <th class="main-grid-cell">Trigger</th>
+    </tr>
+    <tr *ngFor="let device of devices" class="main-grid-row">
+        <td class="main-grid-cell">{{device.hostname}}</td>
+        <td class="main-grid-cell">{{device.devicetype}}</td>
+        <td class="main-grid-cell"><span (click)="onTriggerClick(device)">Trigger</span></td>
+    </tr>
+</table>
