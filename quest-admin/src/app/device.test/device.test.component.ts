@@ -36,7 +36,28 @@ export class DeviceTestComponent  implements OnInit {
         localStorage.setItem('token', this.token);
       });
 
-    this.authService.getDeviceToken('device-test')
+    this.authService.getDeviceToken('device-test1')
+      .subscribe((data : TokenModel) => {
+        this.token = data.token;
+        console.log('device token:', this.token);
+        localStorage.setItem('device-token', this.token);
+      });
+
+    this.authService.getDeviceToken('device-test2')
+      .subscribe((data : TokenModel) => {
+        this.token = data.token;
+        console.log('device token:', this.token);
+        localStorage.setItem('device-token', this.token);
+      });
+
+    this.authService.getDeviceToken('device-test3')
+    .subscribe((data : TokenModel) => {
+      this.token = data.token;
+      console.log('device token:', this.token);
+      localStorage.setItem('device-token', this.token);
+    });
+
+    this.authService.getDeviceToken('device-test4')
       .subscribe((data : TokenModel) => {
         this.token = data.token;
         console.log('device token:', this.token);
@@ -53,7 +74,7 @@ export class DeviceTestComponent  implements OnInit {
       .subscribe(
         player => this.triggerService.trigger(player.code, device.devicetype)
         .subscribe(
-          triggerResponse => window.alert(triggerResponse)
+          triggerResponse => console.log('triggerResponse: ', triggerResponse)
         )
       );
   }
