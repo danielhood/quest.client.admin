@@ -78,4 +78,19 @@ export class DeviceTestComponent  implements OnInit {
         )
       );
   }
+
+  onClearQuests(): void {
+    console.log("Clear Quest");
+
+    this.playerService.getPlayer(12345678)
+    .subscribe(
+      player => {
+        player.achievements = null
+        player.queststatus = ""
+        player.queststate = null
+        this.playerService.updatePlayer(player)
+        .subscribe()
+      }
+    );
+  }
 }

@@ -3,6 +3,7 @@ export class PlayerModel {
     name: string;
     questkey: string;
     queststatus: string;
+    queststate: string;
     achievements: string;
     isenabled: boolean;
   }
