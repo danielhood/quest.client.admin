@@ -29,6 +29,14 @@ export class DeviceService {
       );
   }
 
+  getDevice(hostname: string): Observable<DeviceModel> {
+    return this.http.get<DeviceModel>('https://quest.local:8443/device?hostname=' + hostname + '&key=testdevicekey', this.buildDeviceRequestOptions())
+        .pipe( tap (
+          data => console.log('getDevice', data)
+        )
+      );
+  }
+
   updateDevice(device: DeviceModel): Observable<DeviceModel> {
     return this.http.put<DeviceModel>('https://quest.local:8443/device', device, this.buildDeviceRequestOptions())
       .pipe( tap (

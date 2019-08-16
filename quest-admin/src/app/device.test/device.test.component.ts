@@ -28,6 +28,14 @@ export class DeviceTestComponent  implements OnInit {
     this.getDevices();
   }
 
+  getDeviceToken(hostname: string): void {
+    this.authService.getDeviceToken(hostname)
+      .subscribe((data : TokenModel) => {
+        this.token = data.token;
+        localStorage.setItem('device-token', this.token);
+      });
+  }
+
   getDevices(): void {
     this.authService.getAuthToken('admin', 'admin')
       .subscribe((data : TokenModel) => {
@@ -36,34 +44,15 @@ export class DeviceTestComponent  implements OnInit {
         localStorage.setItem('token', this.token);
       });
 
-    this.authService.getDeviceToken('device-test1')
-      .subscribe((data : TokenModel) => {
-        this.token = data.token;
-        console.log('device token:', this.token);
-        localStorage.setItem('device-token', this.token);
-      });
-
-    this.authService.getDeviceToken('device-test2')
-      .subscribe((data : TokenModel) => {
-        this.token = data.token;
-        console.log('device token:', this.token);
-        localStorage.setItem('device-token', this.token);
-      });
-
-    this.authService.getDeviceToken('device-test3')
-    .subscribe((data : TokenModel) => {
-      this.token = data.token;
-      console.log('device token:', this.token);
-      localStorage.setItem('device-token', this.token);
-    });
-
-    this.authService.getDeviceToken('device-test4')
-      .subscribe((data : TokenModel) => {
-        this.token = data.token;
-        console.log('device token:', this.token);
-        localStorage.setItem('device-token', this.token);
-      });
-
+    this.getDeviceToken('device-test1')
+    this.getDeviceToken('device-test2')
+    this.getDeviceToken('device-test3')
+    this.getDeviceToken('device-test4')
+    this.getDeviceToken('device-test5')
+    this.getDeviceToken('device-test6')
+    this.getDeviceToken('device-test7')
+    this.getDeviceToken('device-test8')
+    
     this.deviceService.getDevices()
       .subscribe(devices => this.devices = devices);
   }
@@ -92,5 +81,29 @@ export class DeviceTestComponent  implements OnInit {
         .subscribe()
       }
     );
+  }
+
+  initDevice(hostname: string, deviceType: string) {
+    this.deviceService.getDevice(hostname)
+      .subscribe(
+        device => {
+          device.devicetype = deviceType
+          this.deviceService.updateDevice(device)
+            .subscribe(
+              res => this.getDevices()
+            )
+        }
+      )    
+  }
+
+  onInitDeviceTypes(): void {
+    this.initDevice('device-test1', 'TREASURE:1')
+    this.initDevice('device-test2', 'TREASURE:2')
+    this.initDevice('device-test3', 'TREASURE:3')
+    this.initDevice('device-test4', 'TREASURE:4')
+    this.initDevice('device-test5', 'STAR:RED')
+    this.initDevice('device-test6', 'STAR:YELLOW')
+    this.initDevice('device-test7', 'STAR:GREEN')
+    this.initDevice('device-test8', 'STAR:BLUE')
   }
 }

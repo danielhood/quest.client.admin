@@ -22,7 +22,7 @@ export class AuthService {
   buildDeviceTokenRequestBody(hostname: string): object {
     return {
       hostname: hostname,
-      devicekey: 'specialdevicekeya'
+      devicekey: 'testdevicekey'
     }
   }
 
