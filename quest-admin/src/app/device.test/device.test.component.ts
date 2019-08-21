@@ -16,6 +16,7 @@ import { AuthService } from "../services/auth.service";
 export class DeviceTestComponent  implements OnInit {
   devices: DeviceModel[];
   token: string;
+  deviceToken: string;
 
   constructor(
     private triggerService: TriggerService,
@@ -31,8 +32,9 @@ export class DeviceTestComponent  implements OnInit {
   getDeviceToken(hostname: string): void {
     this.authService.getDeviceToken(hostname)
       .subscribe((data : TokenModel) => {
-        this.token = data.token;
-        localStorage.setItem('device-token', this.token);
+        this.deviceToken = data.token;
+        console.log('device-token:', this.deviceToken);
+        localStorage.setItem('device-token', this.deviceToken);
       });
   }
 
@@ -68,8 +70,8 @@ export class DeviceTestComponent  implements OnInit {
       );
   }
 
-  onClearQuests(): void {
-    console.log("Clear Quest");
+  onClearQuest(): void {
+    console.log("Clear Player's Quest Data");
 
     this.playerService.getPlayer(12345678)
     .subscribe(
