@@ -4,6 +4,8 @@ import { TokenModel } from "../models/token.model";
 import { AuthService } from "../services/auth.service";
 import { PlayerModel } from "../models/player.model";
 import { PlayerService } from "../services/player.service";
+import { TriggerService } from "../services/trigger.service";
+import { TriggerModel } from '../models/trigger.model';
 
 @Component({
   selector: 'players',
@@ -16,7 +18,8 @@ export class PlayerListComponent  implements OnInit {
 
   constructor(
     private playerService: PlayerService,
-    private authService: AuthService
+    private authService: AuthService,
+    private triggerService: TriggerService
     ) { }
 
   ngOnInit() {
@@ -76,5 +79,18 @@ export class PlayerListComponent  implements OnInit {
         data => this.playerService.getPlayers()
         .subscribe(players => this.players = players)
       );
+  }
+
+  onSetCode(player: PlayerModel): void {
+    console.log("Set code for player: ", player.name);
+    this.triggerService.getLastCode()
+      .subscribe( (data : TriggerModel) => {
+          player.code = data.playercode;
+          console.log("PlayerCode: ", data);
+          this.playerService.updatePlayer(player)
+          .subscribe();
+        }
+      )
+
   }
 }

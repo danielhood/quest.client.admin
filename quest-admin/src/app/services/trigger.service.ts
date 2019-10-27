@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 
 import { PlayerModel } from '../models/player.model';
 import { DeviceModel } from '../models/device.model';
+import { TriggerModel } from '../models/trigger.model';
 
 @Injectable({
     providedIn: 'root',
@@ -31,11 +32,29 @@ export class TriggerService {
     }
   }
 
+  buildGetLastCodeRequestOptions(): object {
+    return {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+  }
+
   trigger(playerCode: number, deviceType: string): Observable<string> {
     return this.http.post<string>('https://quest.local:8443/trigger', this.buildTriggerRequestBody(playerCode, deviceType), this.buildTriggerRequestOptions())
         .pipe( tap (
           data => console.log('trigger', data)
         )
       );
+  }
+
+  getLastCode(): Observable<TriggerModel> {
+    return this.http.get<TriggerModel>('https://quest.local:8443/trigger', this.buildGetLastCodeRequestOptions())
+      .pipe( 
+        tap (
+          data => console.log('getLastCode', data)
+        )
+      )
   }
 }

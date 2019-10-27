@@ -9,7 +9,7 @@
     </tr>
     <tr *ngFor="let player of players" class="main-grid-row">
         <td class="main-grid-cell"><input value={{player.name}} (keyup.enter)="onPlayerNameChanged(player, $event)" (blur)="onPlayerNameChanged(player, $event)" /></td>
-        <td class="main-grid-cell">{{player.code}}</td>
+        <td class="main-grid-cell"><span (click)="onSetCode(player)">{{player.code}}</span></td>
         <td class="main-grid-cell"><input value={{player.questkey}} (keyup.enter)="onPlayerQuestKeyChanged(player, $event)" (blur)="onPlayerQuestKeyChanged(player, $event)" /></td>
         <td class="main-grid-cell">{{player.queststatus}}</td>
         <td class="main-grid-cell"><span (click)="onEnableClick(player)">{{player.isenabled}}</span></td>
