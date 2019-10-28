@@ -55,6 +55,8 @@ export class PlayerListComponent  implements OnInit {
   onPlayerQuestKeyChanged(player: PlayerModel, event: any): void {
     console.log('Player QuestKey changed:', event.target.value);
     player.questkey = event.target.value;
+    player.queststatus = null;
+    player.queststate = null;
     this.playerService.updatePlayer(player)
       .subscribe();
   }
@@ -64,6 +66,7 @@ export class PlayerListComponent  implements OnInit {
     let player = new PlayerModel;
     player.name = "New Player";
     player.code = 0;
+    player.isenabled = false;
 
     this.playerService.updatePlayer(player)
       .subscribe(
