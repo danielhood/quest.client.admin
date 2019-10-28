@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeviceListComponent } from './devices/devices.component';
 import { PlayerListComponent } from './players/players.component';
+import { QuestListComponent } from './quests/quests.component';
 import { DeviceTestComponent } from './device.test/device.test.component';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { DeviceTestComponent } from './device.test/device.test.component';
     AppComponent,
     DeviceListComponent,
     PlayerListComponent,
+    QuestListComponent,
     DeviceTestComponent,
   ],
   imports: [

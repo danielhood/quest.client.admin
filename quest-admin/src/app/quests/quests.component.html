@@ -1,0 +1,14 @@
+<table class="main-grid">
+    <tr>
+        <th class="main-grid-cell">Quest Name</th>
+        <th class="main-grid-cell">Description</th>
+        <th class="main-grid-cell">Key</th>
+        <th class="main-grid-cell">Enabled</th>
+    </tr>
+    <tr *ngFor="let quest of quests" class="main-grid-row">
+        <td class="main-grid-cell">{{quest.name}}</td>
+        <td class="main-grid-cell">{{quest.desc}}</td>
+        <td class="main-grid-cell">{{quest.key}}</td>
+        <td class="main-grid-cell">{{quest.isenabled}}</td>
+    </tr>
+</table>
