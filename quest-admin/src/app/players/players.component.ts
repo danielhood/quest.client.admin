@@ -67,7 +67,7 @@ export class PlayerListComponent  implements OnInit {
 
     this.playerService.updatePlayer(player)
       .subscribe(
-        players => this.players.push(player)  
+        updatedPlayer => this.players.push(updatedPlayer)  
       );
   }
 
@@ -76,7 +76,7 @@ export class PlayerListComponent  implements OnInit {
     this.playerService.deletePlayer(player)
       .subscribe(
         // Refetch all players
-        data => this.playerService.getPlayers()
+        () => this.playerService.getPlayers()
         .subscribe(players => this.players = players)
       );
   }
