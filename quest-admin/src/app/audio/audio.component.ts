@@ -29,10 +29,10 @@ export class AudioComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        //this.authenticate();
+        this.authenticate();
         this.getDeviceTypes();
         this.getResponseTypes();
-        //this.getDeviceAudio();
+        this.getDeviceAudio();
     }
 
     authenticate(): void {
