@@ -40,7 +40,7 @@ export class DeviceService {
   updateDevice(device: DeviceModel): Observable<DeviceModel> {
     return this.http.put<DeviceModel>('https://quest.local:8443/device', device, this.buildDeviceRequestOptions())
       .pipe( tap (
-        data => console.log('updateDeice', data)
+        data => console.log('updateDevice', data)
       )
     );
   }

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { DeviceListComponent } from './devices/devices.component';
 import { PlayerListComponent } from './players/players.component';
 import { QuestListComponent } from './quests/quests.component';
+import { AudioComponent } from './audio/audio.component';
 import { DeviceTestComponent } from './device.test/device.test.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { DeviceTestComponent } from './device.test/device.test.component';
     DeviceListComponent,
     PlayerListComponent,
     QuestListComponent,
+    AudioComponent,
     DeviceTestComponent,
   ],
   imports: [
