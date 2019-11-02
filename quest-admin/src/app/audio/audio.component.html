@@ -5,6 +5,7 @@
         </td>
         <td>
             <select id="devicetype" class="main-select" (change)="onDeviceTypeChanged($event)">
+                <option></option>
                 <option *ngFor="let v of deviceTypes" [value]="v.key">{{v.displayname}}</option>
             </select>
         </td>
@@ -14,7 +15,8 @@
             <label for="responsetype">Respone Type</label>
         </td>
         <td>
-            <select id="responsetype" class="main-select" (change)="onResponseTypeChnaged($event)">
+            <select id="responsetype" class="main-select" (change)="onResponseTypeChanged($event)">
+                <option></option>
                 <option *ngFor="let v of responseTypes" [value]="v.key">{{v.displayname}}</option>
             </select>
         </td>
@@ -28,3 +30,5 @@
         </td>
     </tr>
 </table>
+<br/><br/>
+<span>{{errorMessage}}</span>

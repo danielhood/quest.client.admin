@@ -18,6 +18,11 @@ export class AudioComponent implements OnInit {
     responseTypes: ResponseTypeModel[];
     token: string;
 
+    selectedDeviceType: string = "";
+    selectedResponseType: string = "";
+
+    errorMessage: string;
+
     constructor(
         private audioService: AudioService,
         private authService: AuthService,
@@ -51,9 +56,32 @@ export class AudioComponent implements OnInit {
     getResponseTypes() {
         this.responseTypes = this.audioService.getResponseTypes();
     }
-} 
 
-class selectValue {
-    id: string;
-    name: string;
-}
+    onDeviceTypeChanged(event: any){
+        this.selectedDeviceType = event.target.value;
+        console.log("deviceType changed: ", this.selectedDeviceType);
+    }
+
+    onResponseTypeChanged(event: any){
+        this.selectedResponseType = event.target.value;
+        console.log("responseType changed: ", this.selectedResponseType);
+    }
+
+    onUploadFile(event: any) {
+        if (this.selectedDeviceType == "") {
+            this.errorMessage = "Please select a device type.";
+            return;
+        }
+
+        if (this.selectedResponseType == "") {
+            this.errorMessage = "Please seleect a response type.";
+            return;
+        }
+
+        this.audioService.uploadAudio(this.selectedDeviceType, this.selectedResponseType, event.target.files.item(0)).subscribe(data => {
+                this.errorMessage = "Upload success";
+            }, error => {
+                console.log(error);
+            });
+    }
+} 

@@ -23,6 +23,14 @@ export class AudioService {
         };
     }
 
+    buildDeviceAudioUploadBody(deviceType: string, responseType: string, fileToUpload: File): object {
+        return {
+            devicetype: deviceType,
+            responsetype: responseType,
+            file: fileToUpload
+        };
+    }
+
     getDeviceAudio(): Observable<DeviceAudioModel> {
         return this.http.get<DeviceAudioModel>('https://quest.local:8443/device/audio', this.buildDeviceAudioRequestOptions())
             .pipe(tap(
@@ -56,11 +64,21 @@ export class AudioService {
             {key: "UNKNOWN_QUEST", displayname: "UNKNOWN_QUEST"}
         ];
     }
+
     updateDeviceAudio(deviceAudio: DeviceAudioModel): Observable<DeviceAudioModel> {
         return this.http.put<DeviceAudioModel>('https://quest.local:8443/device/audio', deviceAudio, this.buildDeviceAudioRequestOptions())
             .pipe(tap(
                 data => console.log('updateDeviceAudio', data)
             )
             );
+    }
+
+    uploadAudio(deviceType: string, responseType: string, fileToUpload: File): Observable<string> {
+        console.log("Uploading audio: ", deviceType, " - ", responseType);
+
+        return this.http.put<string>('https://quest.local:8443/device/audio', this.buildDeviceAudioUploadBody(deviceType, responseType, fileToUpload), this.buildDeviceAudioRequestOptions())
+            .pipe(tap(
+                data => console.log('uploadAudio', data)
+            ));
     }
 }
