@@ -32,7 +32,7 @@ export class AudioComponent implements OnInit {
         this.authenticate();
         this.getDeviceTypes();
         this.getResponseTypes();
-        this.getDeviceAudio();
+        //this.getDeviceAudio();
     }
 
     authenticate(): void {
@@ -78,7 +78,7 @@ export class AudioComponent implements OnInit {
             return;
         }
 
-        this.audioService.uploadAudio(this.selectedDeviceType, this.selectedResponseType, event.target.files.item(0)).subscribe(data => {
+        this.audioService.uploadAudio(this.selectedDeviceType, this.selectedResponseType, event.target.files[0]).subscribe(data => {
                 this.errorMessage = "Upload success";
             }, error => {
                 console.log(error);

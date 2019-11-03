@@ -23,12 +23,17 @@ export class AudioService {
         };
     }
 
-    buildDeviceAudioUploadBody(deviceType: string, responseType: string, fileToUpload: File): object {
-        return {
-            devicetype: deviceType,
-            responsetype: responseType,
-            file: fileToUpload
-        };
+    buildDeviceAudioUploadBody(deviceType: string, responseType: string, fileToUpload: File): FormData {
+        // return {
+        //     devicetype: deviceType,
+        //     responsetype: responseType,
+        //     filedata: fileToUpload
+        // };
+        const formData: FormData = new FormData();
+        formData.append('filedata', fileToUpload);
+        formData.append("devicetype", deviceType);
+        formData.append("responsetype", responseType);
+        return formData;
     }
 
     getDeviceAudio(): Observable<DeviceAudioModel> {
@@ -74,9 +79,10 @@ export class AudioService {
     }
 
     uploadAudio(deviceType: string, responseType: string, fileToUpload: File): Observable<string> {
-        console.log("Uploading audio: ", deviceType, " - ", responseType);
+        console.log("Uploading audio: ", deviceType, " - ", responseType, ": ", fileToUpload);
 
         return this.http.put<string>('https://quest.local:8443/device/audio', this.buildDeviceAudioUploadBody(deviceType, responseType, fileToUpload), this.buildDeviceAudioRequestOptions())
+        //return this.http.put<string>('https://quest.local:8443/device/audio', fileToUpload, this.buildDeviceAudioRequestOptions())
             .pipe(tap(
                 data => console.log('uploadAudio', data)
             ));
